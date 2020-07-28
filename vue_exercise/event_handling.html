@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<!--
+TOPIC : 이벤트 핸들링 기초
+DATE : 2020.07.28
+NOTE : https://dreamingdreamer.tistory.com/154
+-->
+
+<!--v-on:someActivity = @activity-->
+<div id="example1">
+    <button @click="counter += 1">Add 1</button>
+    <p>위 버튼을 클릭한 횟수는 {{ counter }} 번 입니다.</p>
+</div>
+
+<div id="example2">
+    <button @click="makeAlert">make Alert!</button>
+</div>
+
+<div id="example3">
+    <button @click="ISay('HI')">SAY HI!</button>
+    <button @click="USay('YESORA',$event)">SAY YESORA!</button>
+</div>
+
+<script>
+    let example1 = new Vue({
+        el: '#example1'
+        , data: {
+            counter: 0
+        }
+    })
+
+    let example2 = new Vue({
+        el: '#example2'
+        , data: {
+            message: 'hi!'
+        }
+        , methods: {
+            makeAlert: function(e) {
+                alert(this.message)
+            }
+        }
+    })
+
+    let example3 = new Vue({
+        el : '#example3'
+        , methods : {
+            ISay : (something) => {
+                alert(something)
+            }
+            ,USay : (something, e) => {
+                alert(something+","+e)
+                // e.preventDefault();
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>
