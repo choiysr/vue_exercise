@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="sample">
+        <h1>출력 ex</h1>
+        // {{}}
+        <p>{{ message }}</p>
+        // v-text : text를 그대로 출력
+        <p v-text="message"></p>
+        // v-html : html을 parsing해서 출력. message에 html태그가 들어간다면 파싱 후 출력
+        <p v-html="message"></p>
+        <hr>
+        <h1>입력 ex</h1>
+        // v-bind:value="message"
+        <br>
+        // 단방향 바인딩. v-bind뒤에 속성명(src,href,class,style...etc)을 입력하여 바인딩
+        <br>
+        <input type="text" v-bind:value="message" />
+        <br>
+        // v-model="message"
+        <br>
+        // 양방향 바인딩. 내용을 변경하면 화면에 즉시 바인딩된다.
+        <br>
+        <input type="text" v-model="message" />
+    </div>
+
+    <script>
+
+        let model = {
+            message: 'HELLO!'
+        }
+
+        //Vue 인스턴스 생성(뷰모델, 상태와 연산)
+        let app = new Vue({
+            el: '#sample',
+            data: model
+        });
+
+        /*
+            el : '태그이름',
+            data : 화면에 보여질 데이터
+            - 인스턴스 안 el 속성을 통해 데이터가 그려질 지점을 설정한다.
+            - el -> 뷰 인스턴스화 할 DOM객체를 넣는다.
+            - data -> 연동할 데이터 객체를 넣는다.
+         */
+
+    </script>
+
+</body>
+
+
+</html>
