@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="example1">
+<my-component></my-component>
+<my-component></my-component>
+<my-component></my-component>
+</div>
+
+
+<script>
+
+        let data = {counter : 0}
+
+        Vue.component('my-component', {
+            template : `<button @click="counter += 1">{{counter}}</button>`
+            , data: function () {
+                // 이 경우 각 컴포넌트가 동일한 data를 바라보고 있어 버튼 클릭시 모든 버튼이 counter된다.
+                // return data;
+
+                // 따라서 각각의 counter를 반환해야 한다.
+                return {counter : 0};
+            }
+        })
+
+         new Vue({
+            el : '#example1'
+        })
+
+
+</script>
+
+</body>
+</html>
