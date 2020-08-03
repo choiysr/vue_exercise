@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="example1">
+        <h2>example1</h2>
+        <p>I'm parent!</p>
+        <child message="(상->하) props를 통한 데이터 전달"></child>
+    </div>
+
+    <div id="example2">
+        <h2>example2</h2>
+        <camel my-message="camelCase vs kebab-case"></camel>
+    </div>
+
+
+    <!-- prop 동적 바인딩 -->
+    <div id="example3">
+        <h2>example3</h2>
+        <input v-model="parentMsg">
+        <mirror :message="parentMsg"></mirror>
+    </div>
+
+    <!-- 객체의 모든 속성을 props로 전달하기 -->
+    <div id="example4">
+        <h2>example4</h2>
+        <todo-item v-bind="todo"></todo-item>
+    </div>
+
+
+
+    <script>
+
+        /* Ex1. child 컴포넌트의 prop활용 */
+        new Vue({
+            el: "#example1"
+            , components: {
+                child: {
+                    props: ['message']
+                    , template: '<span>{{ message }}</span>'
+                }
+            }
+        })
+
+
+        /* Ex2. script에서의 camelCase, html에서의 kebab-case */
+        new Vue({
+            el: "#example2"
+            , components: {
+                camel: {
+                    props: ['myMessage']
+                    , template: '<b>{{ myMessage }}</b>'
+                }
+            }
+        })
+
+
+        /* Ex3. prop 동적 바인딩 */
+        let model = {
+            parentMsg: ''
+        }
+
+        new Vue({
+            el: "#example3"
+            , data: model
+            , components: {
+                mirror: {
+                    props: ['message']
+                    , template: '<b>{{ message }}</b>'
+                }
+            }
+        })
+
+
+        /* Ex4. 객체의 모든 속성을 props로 전달하기 */
+        let todo = {
+            text: 'study hard'
+            , isComplete : 'not yet :('
+        }
+
+        new Vue({
+            el: "#example4"
+            , data : {
+                todo: todo
+            }
+            , components: {
+                'todo-item': {
+                    props: ['text', 'isComplete']
+                    , template: '<b>{{text}} , {{isComplete}}</b>'
+                }
+            }
+        })
+   
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
